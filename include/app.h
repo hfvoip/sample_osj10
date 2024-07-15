@@ -441,6 +441,7 @@ extern uint8_t  OD_N_DIO       ;//                 3
 
 extern unsigned char  app_resetcode ;
 
+void  ADC_BUTTON_Handler();
 
 /* ----------------------------------------------------------------------------
  * Close the 'extern "C"' block

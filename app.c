@@ -49,13 +49,10 @@ enum LOOP_MODE
 
 
 
-uint8_t BUTTON_VOLUME1  =	11;
-uint8_t  BUTTON_VOLUME2   = 13;
-uint8_t  DMIC_CLK_DIO  =    14;
-uint8_t  DMIC_DATA_DIO   =  10;
-uint8_t  OD_P_DIO       =   2;
-uint8_t  OD_N_DIO      =    3;
-
+#define DMIC_CLK_DIO     15
+#define  DMIC_DATA_DIO      10
+#define OD_P_DIO          2
+#define  OD_N_DIO          3
 
 
 
@@ -193,8 +190,7 @@ void OSJ10_Initialize(void)
 		  //in below function ,we intiialize DMIC,OD,DMA,ENABLE INTERTUPTS
 
 
-
-	       J10_Initialize_DMICOD_DMA_INT();
+	       J10_Initialize_DMICOD_DMA_INT(DMIC_CLK_DIO,DMIC_DATA_DIO,OD_P_DIO,OD_N_DIO);
 	  /* Setup DIO5 as a GPIO input with interrupts on transitions, DIO6 as a
 	   * GPIO output. Use the integrated debounce circuit to ensure that only a
 	   * single interrupt event occurs for each push of the pushbutton.
@@ -211,6 +207,8 @@ void OSJ10_Initialize(void)
 	                    DIO_DEBOUNCE_ENABLE,
 	                    DIO_DEBOUNCE_SLOWCLK_DIV1024, 49);
 
+	  //IN OUR DEMO PCBA, DIO7 is to power on the DMIC,it has to be high
+	  Sys_DIO_Config(7,DIO_MODE_GPIO_OUT_1);
 
 
 	  /* Enable interrupts */
@@ -290,6 +288,45 @@ void Button_inc_memory() {
 
 }
 
+void Burn_Parameters() {
+	// We need read/write flash data,but for this sample application ,we don't do it
+}
+void  ADC_BUTTON_Handler() {
+
+	int ad_val  = app_env.batt_lvl;
+	if (ad_val >15000) {
+		 Sys_Delay_ProgramROM(0.2 * SystemCoreClock);
+		 return ;
+	}else
+	if  (ad_val >10000) {
+		// V -
+	} else
+	if  (ad_val >7500) {
+		// V +
+	} else
+	if (ad_val >5000) {
+		// MODE A
+	} else
+	if (ad_val >5000) {
+			// MODE A
+	} else
+	if (ad_val >5000) {
+			// MODE B
+	} else
+	if (ad_val >5000) {
+			// MODE C
+	}  else
+	if (ad_val >5000) {
+			// MODE D
+	}
+    //We need
+	 //Process_buttonevt();
+	//处理完，等待用户松手，不然再次执行到了这里
+	 Sys_Delay_ProgramROM(0.2 * SystemCoreClock);
+
+	 Burn_Parameters();
+
+}
 /* ----------------------------------------------------------------------------
  * Function      : int main(void)
  * ----------------------------------------------------------------------------
@@ -362,7 +399,8 @@ int main(void)
       			 SM_Ptr->Control |= MASK16(UPDATE_CFG);
       		     cs_env[0].rx_value_changed = false;
 
-              }
+         }
+     //  ADC_BUTTON_Handler();
 
     	SYS_WAIT_FOR_INTERRUPT;
 		/* Refresh the watchdog timer */
