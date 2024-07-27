@@ -105,6 +105,9 @@ extern "C"
 
 #define INVALID_DEV_IDX                 -1
 
+#define PACKET_SIZE                     244
+#define MTU_SIZE                        PACKET_SIZE + 7
+
 
 
 /* Define the available application states */

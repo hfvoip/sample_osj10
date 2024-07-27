@@ -54,6 +54,7 @@ typedef struct _sharedMemory
 extern struct _sharedMemory Buffer;
 
 
+
 typedef enum
 {
 	HPF = 0,
@@ -207,6 +208,8 @@ typedef struct {
 	//bit 4: FreqDomain Upload On/Off
 	//bit 5: Config has change
 } ShareMemoryData;	
+
+extern ShareMemoryData* SM_Ptr;
 
 /********************************* MCU ONLY **************************************/
 //MCU Float Value

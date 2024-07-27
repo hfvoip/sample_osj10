@@ -28,6 +28,17 @@ extern "C"
 /* ----------------------------------------------------------------------------
  * Include files
  * --------------------------------------------------------------------------*/
+#include <RTE_Device.h>
+#include <GPIO_RSLxx.h>
+#include <USART_RSLxx.h>
+
+
+/* ----------------------------------------------------------------------------
+ * Defines
+ * --------------------------------------------------------------------------*/
+#if !RTE_USART
+    #error "Please configure USART0 in RTE_Device.h"
+#endif    /* if !RTE_USART0 */
 
 
 #include <rsl10.h>
@@ -68,6 +79,8 @@ extern "C"
 #include <rsl10_protocol.h>
 #include "ble_std.h"
 #include "ble_custom.h"
+
+
 
 /* Set timer to 200 ms (20 times the 10 ms kernel timer resolution) */
 #define TIMER_200MS_SETTING             20
@@ -112,6 +125,11 @@ enum appm_msg
     /* Timer used to control the behavior of the LED_DIO_NUM according to
      * the connection states  */
     LED_TIMER,
+	APP_LED_TIMEOUT,
+	 APP_BATT_LEVEL_LOW,
+	APP_BATT_LEVEL_READ_TIMEOUT,
+	APP_TIMEOUT_WHITELIST /* Timeout to accept connections from not previously bonded clients */
+
 };
 
 struct app_env_tag
@@ -441,6 +459,23 @@ extern uint8_t  OD_N_DIO       ;//                 3
 
 extern unsigned char  app_resetcode ;
 
+
+
+/* ----------------------------------------------------------------------------
+ * Global variables and types
+ * --------------------------------------------------------------------------*/
+extern ARM_DRIVER_USART Driver_USART0;
+extern DRIVER_GPIO_t Driver_GPIO;
+
+extern ARM_DRIVER_USART *uart;
+extern DRIVER_GPIO_t *gpio;
+extern char rx_buffer[];
+/* ---------------------------------------------------------------------------
+* Function prototype definitions
+* --------------------------------------------------------------------------*/
+void Usart_EventCallBack(uint32_t event);
+
+
 void  ADC_BUTTON_Handler();
 
 /* ----------------------------------------------------------------------------
@@ -451,3 +486,5 @@ void  ADC_BUTTON_Handler();
 #endif    /* ifdef __cplusplus */
 
 #endif    /* APP_H_ */
+
+

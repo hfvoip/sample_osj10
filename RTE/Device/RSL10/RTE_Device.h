@@ -29,7 +29,7 @@
 //   <i> Defines if DMA driver should be enabled.
 //   <i> Default: 1
 #ifndef RTE_DMA
- #define RTE_DMA     0
+ #define RTE_DMA     1
 #endif
 // <e>DMA 0 enabled
 // ===============================
@@ -329,7 +329,7 @@
 //   <i> Defines if dma 2 should be enabled.
 //   <i> Default: 1
 #ifndef RTE_DMA2_EN
- #define RTE_DMA2_EN       1
+ #define RTE_DMA2_EN       0
 #endif
 // <e>DMA 2 auto configuration
 // ===============================
@@ -475,7 +475,7 @@
 //   <i> Defines if dma 3 should be enabled.
 //   <i> Default: 1
 #ifndef RTE_DMA3_EN
- #define RTE_DMA3_EN       1
+ #define RTE_DMA3_EN       0
 #endif
 // <e>DMA 3 auto configuration
 // ===============================
@@ -621,7 +621,7 @@
 //   <i> Defines if dma 4 should be enabled.
 //   <i> Default: 1
 #ifndef RTE_DMA4_EN
- #define RTE_DMA4_EN       1
+ #define RTE_DMA4_EN       0
 #endif
 // <e>DMA 4 auto configuration
 // ===============================
@@ -1208,7 +1208,7 @@
 //   <i> Defines if GPIO driver should be enabled.
 //   <i> Default: 1
 #ifndef RTE_GPIO
- #define RTE_GPIO     0
+ #define RTE_GPIO     1
 #endif
 // <e>GPIO 0 configure
 // ===============================
@@ -3783,7 +3783,7 @@
 //   <i> Defines if usart driver should be enabled.
 //   <i> Default: 1
 #ifndef RTE_USART
- #define RTE_USART     0
+ #define RTE_USART     1
 #endif
 //   <e>USART auto configuration
 // ===============================
@@ -3857,7 +3857,7 @@
 //   <i> Defines gpio pad number to be used as a rx data line.
 //   <i> Default: 0
 #ifndef RTE_USART0_RX_PIN_DEFAULT
- #define RTE_USART0_RX_PIN_DEFAULT  2
+ #define RTE_USART0_RX_PIN_DEFAULT  8
 #endif
 //   <o>TX data gpio pad
 //       <0x0=> 0
@@ -3879,7 +3879,7 @@
 //   <i> Defines gpio pad number to be used as a tx data line.
 //   <i> Default: 0
 #ifndef RTE_USART0_TX_PIN_DEFAULT
- #define RTE_USART0_TX_PIN_DEFAULT  3
+ #define RTE_USART0_TX_PIN_DEFAULT  9
 #endif
 // </h>
 // <h>Interrupt priority configuration

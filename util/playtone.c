@@ -4,7 +4,7 @@
 
  * $Date: 2019/12/20 22:05:14 $
  * ------------------------------------------------------------------------- */
-#if 1
+#if 0
 #include "app.h"
 #include "playtone.h"
 #include "sharedBuffers.h"

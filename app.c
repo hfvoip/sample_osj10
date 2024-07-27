@@ -24,7 +24,6 @@
 
 
 
-
 #include <app.h>
 #include <printf.h>
 #include "playtone.h"
@@ -32,16 +31,9 @@
 
 
 #include <rsl10_flash_rom.h>
+#include "app_bass.h"
 
 
-
-uint8_t* arr_flags   ;
-
-//loop 模式:不loop, DSP处理后LOOP, DSP_LOOP:DSP执行中LOOP,DMIC_LOOP: DMIC中断中LOOP(不调用DSP)
-enum LOOP_MODE
-{
-    NO_LOOP=0,DMIC_LOOP,DSP_LOOP,AFTERDSP_LOOP
-};
 
 /* ----------------------------------------------------------------------------
  * Global variables declaration
@@ -61,56 +53,6 @@ unsigned char  app_resetcode  __attribute__ ((section (".noinit")))  ;
 
 
 
-/* ----------------------------------------------------------------------------
- * Function      : void DIO0_IRQHandler(void)
- * ----------------------------------------------------------------------------
- * Description   : Modify the od_mode
- * Inputs        : None
- * Outputs       : None
- * Assumptions   : None
- * ------------------------------------------------------------------------- */
-
-void DIO0_IRQHandler(void)
-{
-	uint8_t  targetval = 0;
-
-    static uint8_t ignore_next_dio_int = 1;
-    if (ignore_next_dio_int == 1)
-    {
-        ignore_next_dio_int = 0;
-    }
-    else if (DIO_DATA->ALIAS[BUTTON_DIO] == targetval)
-    {
-        /* Button is pressed: Ignore next interrupt.
-         * This is required to deal with the debounce circuit limitations. */
-        ignore_next_dio_int = 1;
-        //Button_DIO 按下去的处理
-        Button_inc_volume_btn1();
-
-
-    }
-
-
-}
-extern ShareMemoryData* SM_Ptr;
-
-
-void Debug_LED(int led_dio,int cnt) {
-	for (uint8_t i=0;i<cnt;i++) {
-
-	    Sys_GPIO_Set_High(led_dio);
-
-	    /* Delay for LED_ON_DURATION seconds
-	     * The number of cycles is calculated as follows:
-	     * LED_ON_DURATION [s] * SystemCoreClock [cycle/s] */
-	    Sys_Delay_ProgramROM(0.5 * SystemCoreClock);
-	    Sys_Watchdog_Refresh();
-
-	    Sys_GPIO_Set_Low(led_dio);
-	    Sys_Delay_ProgramROM(0.5 * SystemCoreClock);
-	       Sys_Watchdog_Refresh();
-	}
-}
 /* ----------------------------------------------------------------------------
  * Function      : void Initialize(void)
  * ----------------------------------------------------------------------------
@@ -187,6 +129,7 @@ void OSJ10_Initialize(void)
 		  BLE_Initialize();
 		  App_Env_Initialize();
 
+
 		  //in below function ,we intiialize DMIC,OD,DMA,ENABLE INTERTUPTS
 
 
@@ -198,22 +141,8 @@ void OSJ10_Initialize(void)
 	   * transition mode to deal with the debounce circuit limitations.
 	   * A debounce filter time of 50 ms is used. */
 
-	  Sys_DIO_Config(BUTTON_DIO, DIO_MODE_GPIO_IN_0 | DIO_WEAK_PULL_UP |
-	                 DIO_LPF_DISABLE);
-
-
-
-	  Sys_DIO_IntConfig(0, DIO_EVENT_TRANSITION | DIO_SRC(BUTTON_DIO) |
-	                    DIO_DEBOUNCE_ENABLE,
-	                    DIO_DEBOUNCE_SLOWCLK_DIV1024, 49);
-
 	  //IN OUR DEMO PCBA, DIO7 is to power on the DMIC,it has to be high
 	  Sys_DIO_Config(7,DIO_MODE_GPIO_OUT_1);
-
-
-	  /* Enable interrupts */
-	  NVIC_EnableIRQ(DIO0_IRQn);
-	//   NVIC_EnableIRQ(DMIC_OUT_OD_IN_IRQn);
 
 
 
@@ -224,101 +153,76 @@ void OSJ10_Initialize(void)
 	  DIO_JTAG_SW_PAD_CFG->CM3_JTAG_TRST_EN_ALIAS = 0;
 
 
+	   /* Initialize gpio structure */
+		    gpio = &Driver_GPIO;
+
+		    /* Initialize usart driver structure */
+		    uart = &Driver_USART0;
+
+		    /* Initialize usart, register callback function */
+		    uart->Initialize(Usart_EventCallBack);
+
+		    APP_BASS_SetBatMonAlarm(0);
+
       __set_PRIMASK(PRIMASK_ENABLE_INTERRUPTS);
       __set_FAULTMASK(FAULTMASK_ENABLE_INTERRUPTS);
 
 
-
-
-
 }
 
 
 
 
 
-void Button_inc_volume_btn1() {
-
-
-	float max_vol = MCU_VOLUME.Volume;
-	float volume_step =3;
-
-
-	bool bcontinue = (max_vol<= (0 -  volume_step));
-	//音量到最大，长度一声 ,一共8档
-	if (!bcontinue) {
-				MCU_VOLUME.Volume = 0 -   volume_step *7;
-
-				//调到最小音量
-				Start_Playtone(1000,2,6,1);
-
-
-
-
-	}else {
-		 MCU_VOLUME.Volume +=  volume_step;
-		//在这里看是否到了最大音量，如果到了，就播最大音量
-		//再次检查下是否到了最大
-		max_vol  =  MCU_VOLUME.Volume;
-		//下一步已经不能增加，这就是最大
-		if (max_vol > (0-app_env.volume_step) )
-			Start_Playtone(1000,1,6,3);
-		else
-			Start_Playtone(400,1,6,1);
-	}
-
-
-	Fill_SmData_Buffer();
-
-	SM_Ptr->Control |= MASK16(UPDATE_CFG);
-
-	uint8_t notifydata[3] = {0};
-	notifydata[0] = cs_env[0].arr_params[0];
-	notifydata[1] =  (uint8_t) (0 -MCU_VOLUME.Volume);
-	notifydata[2] = app_env.batt_lvl;
-	if (cs_env[0].sent_success)
-		CustomService_SendNotification(ble_env[0].conidx,CS_IDX_TX_VALUE_VAL,notifydata,3);
-
-
-
-}
-
-
-void Button_inc_memory() {
-
-}
 
 void Burn_Parameters() {
 	// We need read/write flash data,but for this sample application ,we don't do it
 }
 void  ADC_BUTTON_Handler() {
 
-	int ad_val  = app_env.batt_lvl;
-	if (ad_val >15000) {
+	int ad_val  = 0;
+
+   //up: 16383
+	//v- 15205
+	//v+  13298
+	//d 10598
+	//c : 7337
+	//b: 3650
+	//A:501
+	//PRINTF("\r\n ad val:%d",ad_val);
+	ad_val = app_batt_read.batt_lvl_sum_mV ;
+	ad_val = round(ad_val*0.01);
+
+	if (ad_val >=160) {
 		 Sys_Delay_ProgramROM(0.2 * SystemCoreClock);
 		 return ;
 	}else
-	if  (ad_val >10000) {
-		// V -
+	if  (ad_val >140) {
+		// V-
+		Dec_Volume();
+
 	} else
-	if  (ad_val >7500) {
+	if  (ad_val >130) {
 		// V +
+		Inc_Volume();
 	} else
-	if (ad_val >5000) {
-		// MODE A
+	if (ad_val >100) {
+		// D
+		Change_Mode(3);
 	} else
-	if (ad_val >5000) {
-			// MODE A
-	} else
-	if (ad_val >5000) {
-			// MODE B
-	} else
-	if (ad_val >5000) {
+	if (ad_val >70) {
 			// MODE C
-	}  else
-	if (ad_val >5000) {
-			// MODE D
+		Change_Mode(2);
+	} else
+	if (ad_val >30) {
+			// MODE B
+		Change_Mode(1);
+	} else
+	if (ad_val >3) {
+			// MODE A
+		Change_Mode(0);
 	}
+
     //We need
 	 //Process_buttonevt();
 	//处理完，等待用户松手，不然再次执行到了这里
@@ -351,16 +255,18 @@ int main(void)
 
 
 	 printf_init();
+	 PRINTF("\r\n J10 START");
+
 
 
 
    Sys_Delay_ProgramROM(1.5 * SystemCoreClock);
    Start_Playtone(1000,2,-9,3);
+   PRINTF("\r\n if no sound ,please check license  ");
 
-
-
-
-
+   //USE ADC DIO :DIO1 to monitor voltage
+   APP_BASS_SetBatMonAlarm(0);
+   uart->Receive(rx_buffer, 3);
 
 
     /* Spin loop */
@@ -400,7 +306,8 @@ int main(void)
       		     cs_env[0].rx_value_changed = false;
 
          }
-     //  ADC_BUTTON_Handler();
+       ADC_BUTTON_Handler();
+
 
     	SYS_WAIT_FOR_INTERRUPT;
 		/* Refresh the watchdog timer */
@@ -409,6 +316,3 @@ int main(void)
        
     }
 }
-
-
-
