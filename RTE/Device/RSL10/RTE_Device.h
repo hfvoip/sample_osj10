@@ -1561,7 +1561,7 @@
 // <i> Enabled GPIO5 configuration
 // <i> Default: 0
 #ifndef RTE_GPIO5_EN
- #define RTE_GPIO5_EN       1
+ #define RTE_GPIO5_EN       0
 #endif
 //   <o>Drive strength
 //       <0x0=> 2x drive strength
@@ -1630,7 +1630,7 @@
 // <i> Enabled GPIO6 configuration
 // <i> Default: 0
 #ifndef RTE_GPIO6_EN
- #define RTE_GPIO6_EN       1
+ #define RTE_GPIO6_EN       0
 #endif
 //   <o>Drive strength
 //       <0x0=> 2x drive strength
@@ -2044,7 +2044,7 @@
 // <i> Enabled GPIO12 configuration
 // <i> Default: 0
 #ifndef RTE_GPIO12_EN
- #define RTE_GPIO12_EN       1
+ #define RTE_GPIO12_EN       0
 #endif
 //   <o>Drive strength
 //       <0x0=> 2x drive strength
@@ -2328,7 +2328,7 @@
 // <i> Enables DIO0 interrupt.
 // <i> Default: 1
 #ifndef RTE_GPIO_DIO0_INT_EN
- #define RTE_GPIO_DIO0_INT_EN       1
+ #define RTE_GPIO_DIO0_INT_EN       0
 #endif
 //   <o>Interrupt source
 //       <0x0=> GPIO 0   <0x1=> GPIO 1   <0x2=> GPIO 2   <0x3=> GPIO 3

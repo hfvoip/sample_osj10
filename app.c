@@ -50,7 +50,9 @@
 
 unsigned char  app_resetcode  __attribute__ ((section (".noinit")))  ;
 
+void Button_EventCallback(uint32_t event) {
 
+}
 
 
 /* ----------------------------------------------------------------------------
@@ -142,8 +144,9 @@ void OSJ10_Initialize(void)
 	   * A debounce filter time of 50 ms is used. */
 
 	  //IN OUR DEMO PCBA, DIO7 is to power on the DMIC,it has to be high
-	  Sys_DIO_Config(7,DIO_MODE_GPIO_OUT_1);
+	//  Sys_DIO_Config(7,DIO_MODE_GPIO_OUT_1);
 
+	  Sys_DIO_Config(LED_DIO,DIO_MODE_GPIO_OUT_0);
 
 
 	  /* Configure DIO used for DMIC
@@ -155,6 +158,8 @@ void OSJ10_Initialize(void)
 
 	   /* Initialize gpio structure */
 		    gpio = &Driver_GPIO;
+		    /* Initialize gpio driver */
+		  	gpio->Initialize(Button_EventCallback);
 
 		    /* Initialize usart driver structure */
 		    uart = &Driver_USART0;
@@ -163,6 +168,14 @@ void OSJ10_Initialize(void)
 		    uart->Initialize(Usart_EventCallBack);
 
 		    APP_BASS_SetBatMonAlarm(0);
+
+		    Sys_DIO_Config(T3_BUTTON, INPUTGPIO_SETTING );
+		     Sys_DIO_Config(LEFT_BLE_BUTTON,  INPUTGPIO_SETTING);
+		     Sys_DIO_Config(RIGHT_BLE_BUTTON,  INPUTGPIO_SETTING);
+		     Sys_DIO_Config(WIFI_AUDIO_BUTTON,  INPUTGPIO_SETTING);
+
+
+
 
       __set_PRIMASK(PRIMASK_ENABLE_INTERRUPTS);
       __set_FAULTMASK(FAULTMASK_ENABLE_INTERRUPTS);
@@ -243,14 +256,20 @@ void  ADC_BUTTON_Handler() {
 
 int main(void)
 {
-
-
+	/* in our sample PCBA ,we have 2 applications , HA or HA-BLECLIENT */
+	// Let's check which application we should go ,by  WIFI_AUDIO_BUTTON
+	   Sys_DIO_Config(WIFI_AUDIO_BUTTON,  INPUTGPIO_SETTING);
+	   uint8_t btn_flag_4 = DIO_DATA->ALIAS[WIFI_AUDIO_BUTTON];
+	   if (btn_flag_4 == 0) {
+		   return main_bleclient();
+	   }
 
 	//MCU_Config_Parser();
 	Fill_SmData_Buffer();
 
     /* Initialize the system */
     OSJ10_Initialize();
+
 
 
 
@@ -262,6 +281,7 @@ int main(void)
 
    Sys_Delay_ProgramROM(1.5 * SystemCoreClock);
    Start_Playtone(1000,2,-9,3);
+   ToggleLed(20, 500);
    PRINTF("\r\n if no sound ,please check license  ");
 
    //USE ADC DIO :DIO1 to monitor voltage
@@ -307,7 +327,7 @@ int main(void)
 
          }
        ADC_BUTTON_Handler();
-
+       Normal_BUTTON_Handler();
 
     	SYS_WAIT_FOR_INTERRUPT;
 		/* Refresh the watchdog timer */
@@ -315,4 +335,30 @@ int main(void)
 
        
     }
+}
+
+
+int main_bleclient() {
+	//another application will start from addr :0x138000 ,pls confirm the sections.ld
+	/*
+	MEMORY
+	{
+	  ROM  (r) : ORIGIN = 0x00000000, LENGTH = 4K
+	  FLASH (xrw) : ORIGIN = 0x00138000, LENGTH = 380K
+	  PRAM (xrw) : ORIGIN = 0x00200000, LENGTH = 64K
+
+	  DRAM (xrw) : ORIGIN = 0x20000000, LENGTH = 24K
+	  DRAM_DSP (xrw) : ORIGIN = 0x20006000, LENGTH = 46K
+	  DRAM_DSP_CM3 (xrw) : ORIGIN = 0x2100B800, LENGTH = 2K
+	  DRAM_BB (xrw) : ORIGIN = 0x20012000, LENGTH = 16K
+	}
+	*/
+	  uint32_t another_appaddress = 0x138000;
+	   Sys_Delay_ProgramROM(1.0 * SystemCoreClock);
+
+	   BootROMStatus status = Sys_BootROM_ValidateApp(another_appaddress);
+	   if (status == BOOTROM_ERR_NONE || status == BOOTROM_ERR_BAD_CRC) {
+		   Sys_BootROM_StartApp(another_appaddress);
+	   }
+	   return 0;
 }

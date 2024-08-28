@@ -28,132 +28,137 @@
 		<link>
 			<name>RTE/CMSIS_Driver/USART_RSLxx.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/drivers/usart_driver/source/USART_RSLxx.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/drivers/usart_driver/source/USART_RSLxx.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/stubprf.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/ble_abstraction_layer/ble/source/stubprf.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/ble_abstraction_layer/ble/source/stubprf.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Utility/SEGGER_RTT.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/rtt/SEGGER_RTT.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/rtt/SEGGER_RTT.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Utility/SEGGER_RTT_ASM_ARMv7M.S</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/rtt/SEGGER_RTT_ASM_ARMv7M.S</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/rtt/SEGGER_RTT_ASM_ARMv7M.S</locationURI>
 		</link>
 		<link>
 			<name>RTE/Utility/SEGGER_RTT_printf.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/rtt/SEGGER_RTT_printf.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/rtt/SEGGER_RTT_printf.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Utility/printf.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/printf/printf.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/printf/printf.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/DMA_RSLxx.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/drivers/dma_driver/source/DMA_RSLxx.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/drivers/dma_driver/source/DMA_RSLxx.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/GPIO_RSLxx.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/drivers/gpio_driver/source/GPIO_RSLxx.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/drivers/gpio_driver/source/GPIO_RSLxx.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/libbass.a</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/lib/ble_profiles/Release/libbass.a</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/lib/ble_profiles/Release/libbass.a</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/libblelib.a</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/lib/ble_core/Release/libblelib.a</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/lib/ble_core/Release/libblelib.a</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/libkelib.a</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/lib/ble_core/Release/libkelib.a</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/lib/ble_core/Release/libkelib.a</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/rsl10_romvect.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/syslib/code/rsl10_romvect.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/syslib/code/rsl10_romvect.c</locationURI>
+		</link>
+		<link>
+			<name>RTE/Device/RSL10/rsl10_sys_adc.c</name>
+			<type>1</type>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/syslib/code/rsl10_sys_adc.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/rsl10_sys_asrc.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/syslib/code/rsl10_sys_asrc.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/syslib/code/rsl10_sys_asrc.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/rsl10_sys_audio.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/syslib/code/rsl10_sys_audio.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/syslib/code/rsl10_sys_audio.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/rsl10_sys_clocks.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/syslib/code/rsl10_sys_clocks.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/syslib/code/rsl10_sys_clocks.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/rsl10_sys_crc.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/syslib/code/rsl10_sys_crc.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/syslib/code/rsl10_sys_crc.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/rsl10_sys_dma.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/syslib/code/rsl10_sys_dma.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/syslib/code/rsl10_sys_dma.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/rsl10_sys_flash.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/syslib/code/rsl10_sys_flash.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/syslib/code/rsl10_sys_flash.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/rsl10_sys_power.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/syslib/code/rsl10_sys_power.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/syslib/code/rsl10_sys_power.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/rsl10_sys_power_modes.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/syslib/code/rsl10_sys_power_modes.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/syslib/code/rsl10_sys_power_modes.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/rsl10_sys_rffe.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/syslib/code/rsl10_sys_rffe.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/syslib/code/rsl10_sys_rffe.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/rsl10_sys_timers.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/syslib/code/rsl10_sys_timers.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/syslib/code/rsl10_sys_timers.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/rsl10_sys_uart.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/syslib/code/rsl10_sys_uart.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/syslib/code/rsl10_sys_uart.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/rsl10_sys_version.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/syslib/code/rsl10_sys_version.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/syslib/code/rsl10_sys_version.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/sbrk.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/cmsis/source/sbrk.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/cmsis/source/sbrk.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/start.c</name>
 			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.7.606/source/firmware/cmsis/source/start.c</locationURI>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/cmsis/source/start.c</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

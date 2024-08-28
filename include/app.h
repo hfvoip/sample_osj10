@@ -431,7 +431,7 @@ extern int Msg_Handler(ke_msg_id_t const msgid, void *param,
                                          DMA_DISABLE_INT_DISABLE  |\
                                          DMA_LITTLE_ENDIAN)
 
-
+#define INPUTGPIO_SETTING				DIO_MODE_GPIO_IN_0  | DIO_WEAK_PULL_UP |DIO_LPF_DISABLE
 
 /* ----------------------------------------------------------------------------
  * Function prototype definitions
@@ -449,6 +449,7 @@ extern int APP_Timer(ke_msg_id_t const msg_id,
               void const *param,
               ke_task_id_t const dest_id,
               ke_task_id_t const src_id);
+void Normal_BUTTON_Handler();
 
 extern uint8_t BUTTON_VOLUME1  ; //				11
 extern uint8_t  BUTTON_VOLUME2  ;//			13
@@ -459,6 +460,10 @@ extern uint8_t  OD_N_DIO       ;//                 3
 
 extern unsigned char  app_resetcode ;
 
+#define LEFT_BLE_BUTTON 7
+#define RIGHT_BLE_BUTTON	11
+#define  T3_BUTTON			5
+#define  WIFI_AUDIO_BUTTON	4
 
 
 /* ----------------------------------------------------------------------------
@@ -474,6 +479,7 @@ extern char rx_buffer[];
 * Function prototype definitions
 * --------------------------------------------------------------------------*/
 void Usart_EventCallBack(uint32_t event);
+int main_bleclient();
 
 
 void  ADC_BUTTON_Handler();

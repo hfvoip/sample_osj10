@@ -2,6 +2,7 @@
 #include <math.h>
 #include "sharedBuffers.h"
 #include "playtone.h"
+#include <printf.h>
 
 void Debug_LED(int led_dio,int cnt) {
 	for (uint8_t i=0;i<cnt;i++) {
@@ -160,3 +161,30 @@ void Change_Mode(uint8_t mem_idx) {
 
 }
 
+void Normal_BUTTON_Handler() {
+	//检查DIO5 (T3), DIO11(RIGHT),DIO7(LEFT)
+
+	uint8_t btn_flag_7 = DIO_DATA->ALIAS[LEFT_BLE_BUTTON];
+	uint8_t btn_flag_11 = DIO_DATA->ALIAS[RIGHT_BLE_BUTTON];
+	uint8_t btn_flag_5 = DIO_DATA->ALIAS[T3_BUTTON];
+	uint8_t btn_flag_4 = DIO_DATA->ALIAS[WIFI_AUDIO_BUTTON];
+	PRINTF("\r\n 5:%d 7:%d 11:%d", btn_flag_5, btn_flag_7,btn_flag_11);
+	 Sys_Delay_ProgramROM(0.5 * SystemCoreClock);
+	if (btn_flag_7 ==0) {
+	//	PRINTF("DIO7 PRESSED\r\n");
+	    Sys_Delay_ProgramROM(0.5 * SystemCoreClock);
+
+	}
+
+	if (btn_flag_11 ==0) {
+	//	PRINTF("DIO11 PRESSED\r\n");
+	    Sys_Delay_ProgramROM(0.5 * SystemCoreClock);
+
+	}
+	if (btn_flag_5 ==1) {
+		//	PRINTF("DIO5 PRESSED\r\n");
+		    Sys_Delay_ProgramROM(0.5 * SystemCoreClock);
+
+		}
+
+}

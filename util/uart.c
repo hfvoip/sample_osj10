@@ -77,7 +77,9 @@ void ToggleLed(uint32_t n, uint32_t delay_ms)
         Sys_Watchdog_Refresh();
 
         /* Toggle led diode */
-        gpio->ToggleValue(LED_DIO);
+
+        Sys_GPIO_Toggle(LED_DIO);
+
 
         /* Delay */
         Sys_Delay_ProgramROM((delay_ms / 1000.0) * SystemCoreClock);
