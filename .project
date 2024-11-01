@@ -26,16 +26,6 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>RTE/CMSIS_Driver/USART_RSLxx.c</name>
-			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/drivers/usart_driver/source/USART_RSLxx.c</locationURI>
-		</link>
-		<link>
-			<name>RTE/Device/stubprf.c</name>
-			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/ble_abstraction_layer/ble/source/stubprf.c</locationURI>
-		</link>
-		<link>
 			<name>RTE/Utility/SEGGER_RTT.c</name>
 			<type>1</type>
 			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/rtt/SEGGER_RTT.c</locationURI>
@@ -54,16 +44,6 @@
 			<name>RTE/Utility/printf.c</name>
 			<type>1</type>
 			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/printf/printf.c</locationURI>
-		</link>
-		<link>
-			<name>RTE/Device/RSL10/DMA_RSLxx.c</name>
-			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/drivers/dma_driver/source/DMA_RSLxx.c</locationURI>
-		</link>
-		<link>
-			<name>RTE/Device/RSL10/GPIO_RSLxx.c</name>
-			<type>1</type>
-			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/drivers/gpio_driver/source/GPIO_RSLxx.c</locationURI>
 		</link>
 		<link>
 			<name>RTE/Device/RSL10/libbass.a</name>
@@ -159,6 +139,11 @@
 			<name>RTE/Device/RSL10/start.c</name>
 			<type>1</type>
 			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/cmsis/source/start.c</locationURI>
+		</link>
+		<link>
+			<name>RTE/Device/RSL10/stubprf.c</name>
+			<type>1</type>
+			<locationURI>$%7Bcmsis_pack_root%7D/ONSemiconductor/RSL10/3.8.801/source/firmware/ble_abstraction_layer/ble/source/stubprf.c</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

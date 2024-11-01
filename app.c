@@ -156,6 +156,7 @@ void OSJ10_Initialize(void)
 	  DIO_JTAG_SW_PAD_CFG->CM3_JTAG_TRST_EN_ALIAS = 0;
 
 
+#if 0
 	   /* Initialize gpio structure */
 		    gpio = &Driver_GPIO;
 		    /* Initialize gpio driver */
@@ -166,6 +167,7 @@ void OSJ10_Initialize(void)
 
 		    /* Initialize usart, register callback function */
 		    uart->Initialize(Usart_EventCallBack);
+#endif
 
 		    APP_BASS_SetBatMonAlarm(0);
 
@@ -281,12 +283,14 @@ int main(void)
 
    Sys_Delay_ProgramROM(1.5 * SystemCoreClock);
    Start_Playtone(1000,2,-9,3);
+#if 0
    ToggleLed(20, 500);
+#endif
    PRINTF("\r\n if no sound ,please check license  ");
 
    //USE ADC DIO :DIO1 to monitor voltage
    APP_BASS_SetBatMonAlarm(0);
-   uart->Receive(rx_buffer, 3);
+//   uart->Receive(rx_buffer, 3);
 
 
     /* Spin loop */

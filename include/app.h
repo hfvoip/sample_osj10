@@ -25,21 +25,22 @@ extern "C"
 {
 #endif    /* ifdef __cplusplus */
 
+#define ENABLE_CMSIS_FUNC  1
 /* ----------------------------------------------------------------------------
  * Include files
  * --------------------------------------------------------------------------*/
-#include <RTE_Device.h>
-#include <GPIO_RSLxx.h>
-#include <USART_RSLxx.h>
+
+//#include <Driver_GPIO.h>
+//#include <GPIO_RSLxx.h>
+//#include <USART_RSLxx.h>
 
 
 /* ----------------------------------------------------------------------------
  * Defines
  * --------------------------------------------------------------------------*/
-#if !RTE_USART
-    #error "Please configure USART0 in RTE_Device.h"
-#endif    /* if !RTE_USART0 */
-
+//#if !RTE_USART
+//    #error "Please configure USART0 in RTE_Device.h"
+//#endif    /* if !RTE_USART0 */
 
 #include <rsl10.h>
 
@@ -469,11 +470,13 @@ extern unsigned char  app_resetcode ;
 /* ----------------------------------------------------------------------------
  * Global variables and types
  * --------------------------------------------------------------------------*/
+#if  0
 extern ARM_DRIVER_USART Driver_USART0;
 extern DRIVER_GPIO_t Driver_GPIO;
 
 extern ARM_DRIVER_USART *uart;
 extern DRIVER_GPIO_t *gpio;
+#endif
 extern char rx_buffer[];
 /* ---------------------------------------------------------------------------
 * Function prototype definitions

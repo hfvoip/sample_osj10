@@ -26,7 +26,7 @@
 
 #include "app.h"
 #include "printf.h"
-
+#if 0
 /* Global variables */
 ARM_DRIVER_USART *uart;
 DRIVER_GPIO_t *gpio;
@@ -85,3 +85,4 @@ void ToggleLed(uint32_t n, uint32_t delay_ms)
         Sys_Delay_ProgramROM((delay_ms / 1000.0) * SystemCoreClock);
     }
 }
+#endif
